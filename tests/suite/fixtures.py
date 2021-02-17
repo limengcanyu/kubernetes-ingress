@@ -431,11 +431,11 @@ def crd_ingress_controller(
     """
     namespace = ingress_controller_prerequisites.namespace
     name = "nginx-ingress"
-    vs_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_virtualservers.yaml")
-    vsr_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_virtualserverroutes.yaml")
-    pol_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_policies.yaml")
-    ts_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_transportservers.yaml")
-    gc_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_globalconfigurations.yaml")
+    vs_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_virtualservers.yaml")
+    vsr_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_virtualserverroutes.yaml")
+    pol_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_policies.yaml")
+    ts_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_transportservers.yaml")
+    gc_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_globalconfigurations.yaml")
 
     try:
         print("------------------------- Update ClusterRole -----------------------------------")
@@ -445,27 +445,27 @@ def crd_ingress_controller(
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             vs_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_virtualservers.yaml",
+            f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_virtualservers.yaml",
         )
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             vsr_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_virtualserverroutes.yaml",
+            f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_virtualserverroutes.yaml",
         )
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             pol_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_policies.yaml",
+            f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_policies.yaml",
         )
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             ts_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_transportservers.yaml",
+            f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_transportservers.yaml",
         )
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             gc_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/k8s.nginx.org_globalconfigurations.yaml",
+            f"{DEPLOYMENTS}/common/crds/k8s.nginx.org_globalconfigurations.yaml",
         )
         print("------------------------- Create IC -----------------------------------")
         name = create_ingress_controller(
@@ -535,17 +535,17 @@ def crd_ingress_controller_with_ap(
         rbac = configure_rbac_with_ap(kube_apis.rbac_v1)
 
         print("------------------------- Register AP CRD -----------------------------------")
-        ap_pol_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/appprotect.f5.com_appolicies.yaml")
-        ap_log_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds-v1beta1/appprotect.f5.com_aplogconfs.yaml")
+        ap_pol_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/appprotect.f5.com_appolicies.yaml")
+        ap_log_crd_name = get_name_from_yaml(f"{DEPLOYMENTS}/common/crds/appprotect.f5.com_aplogconfs.yaml")
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             ap_pol_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/appprotect.f5.com_appolicies.yaml",
+            f"{DEPLOYMENTS}/common/crds/appprotect.f5.com_appolicies.yaml",
         )
         create_crd_from_yaml(
             kube_apis.api_extensions_v1_beta1,
             ap_log_crd_name,
-            f"{DEPLOYMENTS}/common/crds-v1beta1/appprotect.f5.com_aplogconfs.yaml",
+            f"{DEPLOYMENTS}/common/crds/appprotect.f5.com_aplogconfs.yaml",
         )
 
         print("------------------------- Create IC -----------------------------------")
